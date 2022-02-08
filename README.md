@@ -1,3 +1,3 @@
-# Tsumiji
+# つみじ Tsumiji
 
-A description of this package.
+NSAttributedString の作成を手助けします.
