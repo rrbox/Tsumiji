@@ -5,7 +5,6 @@
 //  Created by rrbox on 2022/02/09.
 //
 
-import Foundation
 #if os(iOS)
 import UIKit
 #elseif os(macOS)
