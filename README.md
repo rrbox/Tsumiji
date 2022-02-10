@@ -1,3 +1,3 @@
 # つみじ Tsumiji
 
-NSAttributedString の作成を手助けします.
+NSAttributedString の生成を手助けします.
