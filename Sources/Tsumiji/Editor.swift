@@ -7,14 +7,7 @@
 
 import Foundation
 
-public struct Tag {
-    var attribute: Attribute
-    public init(attribute: Attribute) {
-        self.attribute = attribute
-    }
-}
-
-final public class Builder: NSObject {
+final public class Editor: NSObject {
     
     public let product = NSMutableAttributedString()
     
@@ -27,12 +20,12 @@ final public class Builder: NSObject {
         return self
     }
     
-    @discardableResult public func tag(_ value: Tag) -> Self {
-        try! self.stack.add(attr: value.attribute)
+    @discardableResult public func font(_ value: Attribute) -> Self {
+        try! self.stack.add(attr: value)
         return self
     }
     
-    @discardableResult public func tagEnd() -> Self {
+    @discardableResult public func fontEnd() -> Self {
         self.stack.remove()
         return self
     }
