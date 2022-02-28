@@ -1,3 +1,3 @@
 # つみじ Tsumiji
 
-NSAttributedString の生成を手助けします.
+NSAttributedString を Builder パターンで作成する SwiftPM です。
