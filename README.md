@@ -8,8 +8,8 @@ NSAttributedString を Builder パターンで作成する SwiftPM です。
 
 ``` swift
 extension Attribute {
-    static let impact = Attribute(attribute: [.fontName: "Impact"])
-    static let red = Attribute(attribute: [.fontColor: UIColor.red])
+    static let impact: Attribute = [.fontName: "Impact"]
+    static let red: Attribute = [.fontColor: UIColor.red]
 }
 
 
