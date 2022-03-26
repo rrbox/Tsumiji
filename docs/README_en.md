@@ -4,7 +4,7 @@ SwiftPM to create NSAttributedString with Builder pattern.
 
 ## DEMO
 
-You can design an NSAttributedString as follows.
+You can design an NSAttributedString like this:
 
 ``` swift
 extension Attribute {
@@ -19,6 +19,6 @@ let attrtext = Editor()
     .product
 ````
 
- An NSAttributedString is generated as follows.
+It is created like this:
 
 <img width="402" alt="result_0" src="https://user-images.githubusercontent.com/87851278/160229559-24adf968-f90d-4341-b86a-636349319cd2.png">
