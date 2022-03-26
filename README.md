@@ -7,9 +7,15 @@ NSAttributedString を Builder パターンで作成する SwiftPM です。
 このように NSAttributedString を設計できます.
 
 ``` swift
+extension Attribute {
+    static let impact = Attribute(attribute: [.fontName: "Impact"])
+    static let red = Attribute(attribute: [.fontColor: UIColor.red])
+}
+
+
 let attrtext = Editor()
-    .tag(.impact).tag(.red).text("Hello,").tagEnd().text(" World!\n")
-    .tag(.red).text("Hi").tagEnd().text("こんにちはこんにちは!!")
+    .font(.impact).font(.red).text("Hello,").fontEnd().text(" World!\n")
+    .font(.red).text("Hi").fontEnd().text("こんにちはこんにちは!!")
     .product
 ```
 
