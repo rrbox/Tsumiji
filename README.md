@@ -19,6 +19,6 @@ let attrtext = Editor()
     .product
 ```
 
- 生成された NSAttributedString を表示すると, この写真のようになります.
+ 生成された NSAttributedString を表示したものがこちら.
 
 <img width="402" alt="result_0" src="https://user-images.githubusercontent.com/87851278/160229559-24adf968-f90d-4341-b86a-636349319cd2.png">
