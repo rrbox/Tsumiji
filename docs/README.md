@@ -1,6 +1,6 @@
 # つみじ Tsumiji
 
-[English](README_en.md)
+:paperclip:[English](README_en.md)
 
 NSAttributedString を Builder パターンで作成する SwiftPM です。
 
