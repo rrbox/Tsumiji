@@ -11,7 +11,7 @@ final public class Editor: NSObject {
     
     public let product = NSMutableAttributedString()
     
-    var stack = Stack(attrributeStack: [])
+    var stack = Stack(attrributeStack: [[:]])
     
     public override init() {}
     
