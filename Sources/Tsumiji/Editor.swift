@@ -7,27 +7,34 @@
 
 import Foundation
 
-final public class Editor: NSObject {
+public struct Editor {
     
-    public let product = NSMutableAttributedString()
+    public var product = AttributedString()
     
     var stack = Stack(attrributeStack: [[:]])
     
-    public override init() {}
+    public init() {}
+    
+    public init(_ nsAttributedString: NSAttributedString) {
+        self.product = AttributedString(nsAttributedString)
+    }
     
     @discardableResult public func text(_ value: String) -> Self {
-        self.product.append(NSAttributedString(string: value, attributes: self.stack.getFirst().toNSAttribute()))
-        return self
+        var result = self
+        result.product.append(AttributedString(NSAttributedString(string: value, attributes: self.stack.getFirst().toNSAttribute())))
+        return result
     }
     
     @discardableResult public func font(_ value: Attribute) -> Self {
-        try! self.stack.add(attr: value)
-        return self
+        var result = self
+        try! result.stack.add(attr: value)
+        return result
     }
     
     @discardableResult public func fontEnd() -> Self {
-        self.stack.remove()
-        return self
+        var result = self
+        result.stack.remove()
+        return result
     }
     
 }
