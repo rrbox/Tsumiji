@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Tsumiji",
     platforms: [
-        .macOS(.v10_10),
+        .macOS(.v12),
         .iOS(.v9)
     ],
     products: [
