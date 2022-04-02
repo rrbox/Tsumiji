@@ -15,6 +15,10 @@ public struct Editor {
     
     public init() {}
     
+    public init(_ nsAttributedString: NSAttributedString) {
+        self.product = AttributedString(nsAttributedString)
+    }
+    
     @discardableResult public func text(_ value: String) -> Self {
         var result = self
         result.product.append(AttributedString(NSAttributedString(string: value, attributes: self.stack.getFirst().toNSAttribute())))
