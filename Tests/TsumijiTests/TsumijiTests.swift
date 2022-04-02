@@ -2,8 +2,14 @@ import XCTest
 import SwiftUI
 @testable import Tsumiji
 
+#if os(macOS)
+typealias Color = NSColor
+#elseif os(iOS)
+typealias Color = UIColor
+#endif
+
 extension Attribute {
-    static let red: Self = [.fontColor: NSColor.red]
+    static let red: Self = [.fontColor: Color.red]
 }
 
 final class TsumijiTests: XCTestCase {
