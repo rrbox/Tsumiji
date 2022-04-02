@@ -2,7 +2,7 @@
 
 :paperclip:[English](README_en.md)
 
-NSAttributedString を Builder パターンで作成する SwiftPM です。
+AttributedString を Builder パターンや, 文字列リテラルで作成する SwiftPM です。
 
 ## DEMO
 
