@@ -11,10 +11,6 @@ public struct Editor {
     
     public var product = AttributedString()
     
-    public var nsAttributedString: NSAttributedString {
-        NSAttributedString.init(self.product)
-    }
-    
     var stack = Stack(attrributeStack: [])
     
     public init() {}
