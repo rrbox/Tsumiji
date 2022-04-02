@@ -1,6 +1,6 @@
 # つみじ Tsumiji
 
-SwiftPM to create NSAttributedString with Builder pattern.
+SwiftPM for creating AttributedString with Builder pattern or string literals.
 
 ## DEMO
 
