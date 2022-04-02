@@ -1,4 +1,5 @@
 import XCTest
+import SwiftUI
 @testable import Tsumiji
 
 extension Attribute {
@@ -19,5 +20,11 @@ final class TsumijiTests: XCTestCase {
             .fontEnd()
         
         print(editor.product)
+        
+        let editedString: EditorLiteral = "hello\(.red), world\(.fontEnd)."
+        
+        print(editedString.product)
+        
     }
 }
+
