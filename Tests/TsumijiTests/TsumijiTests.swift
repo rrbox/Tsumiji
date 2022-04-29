@@ -6,8 +6,6 @@ extension Attribute {
     static let red: Self = [.fontColor: NSColor.red]
 }
 
-typealias NSAttribute = [NSAttributedString.Key: Any?]
-
 #if os(macOS)
 typealias Font = NSFont
 typealias Color = NSColor
