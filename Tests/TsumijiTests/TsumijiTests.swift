@@ -2,10 +2,6 @@ import XCTest
 import SwiftUI
 @testable import Tsumiji
 
-extension Attribute {
-    static let red: Self = [.fontColor: NSColor.red]
-}
-
 #if os(macOS)
 typealias Font = NSFont
 typealias Color = NSColor
@@ -13,6 +9,21 @@ typealias Color = NSColor
 typealias Font = UIFont
 typealias Color = UIColor
 #endif
+
+extension Attribute {
+    static let red: Self = [.fontColor: Color.red]
+    static let big: Self = [.fontSize: 50]
+    static let impact: Self = [.fontName: "impact"]
+    static let redBack: Self = [.backgroundColor: Color.red]
+}
+
+extension String {
+    static let defaultFontName = "HelveticaNeue-UltraLight"
+}
+
+extension CGFloat {
+    static let defaultFontSize = CGFloat(32)
+}
 
 extension Font {
     static let `default` = Font(name: "HelveticaNeue-UltraLight", size: 32)
@@ -24,29 +35,55 @@ extension Color {
 }
 
 final class TsumijiTests: XCTestCase {
+    
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
         
-        let attr = NSMutableAttributedString()
-        attr.append(NSAttributedString(string: "Sample", attributes: [
+        let attrCase = NSMutableAttributedString()
+        attrCase.append(NSAttributedString(string: "color", attributes: [
             .font: Font.default!,
             .foregroundColor: Color.red,
             .backgroundColor: Color.defaultBackground
         ]))
+        attrCase.append(NSAttributedString(string: "fontSize", attributes: [
+            .font: Font(name: .defaultFontName, size: 50)!,
+            .foregroundColor: Color.default,
+            .backgroundColor: Color.defaultBackground
+        ]))
+        attrCase.append(NSAttributedString(string: "fontName", attributes: [
+            .font: Font(name: "impact", size: .defaultFontSize)!,
+            .foregroundColor: Color.default,
+            .backgroundColor: Color.defaultBackground
+        ]))
+        attrCase.append(NSAttributedString(string: "backgroundColor", attributes: [
+            .font: Font.default!,
+            .foregroundColor: Color.default,
+            .backgroundColor: Color.red
+        ]))
         
+        // test : builder pattern
         let editor = Editor()
             .font(.red)
-            .text("Sample")
+            .text("color")
             .fontEnd()
+            .font(.big)
+            .text("fontSize")
+            .fontEnd()
+            .font(.impact)
+            .text("fontName")
+            .fontEnd()
+            .font(.redBack)
+            .text("backgroundColor")
+            .fontEnd()
+            
         
-        XCTAssertEqual(editor.product, AttributedString(attr))
+        XCTAssertEqual(editor.product, AttributedString(attrCase))
         
-        let editedLiteral: EditorLiteral = "\(.red)Sample\(.fontEnd)"
+        // test : editor literal
+        let editedLiteral: EditorLiteral = "\(.red)color\(.fontEnd)\(.big)fontSize\(.fontEnd)\(.impact)fontName\(.fontEnd)\(.redBack)backgroundColor\(.fontEnd)"
         
-        XCTAssertEqual(editedLiteral.product, AttributedString(attr))
+        XCTAssertEqual(editedLiteral.product, AttributedString(attrCase))
         
     }
+    
 }
 
