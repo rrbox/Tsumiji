@@ -30,7 +30,7 @@ extension Color {
 extension Attribute {
     static let red: Self = [.fontColor: Color.red]
     static let big: Self = [.fontSize: 50]
-    static let impact: Self = [.fontName: "impact"]
+    static let impact: Self = [.fontName: "times"]
     static let blueBack: Self = [.backgroundColor: Color.blue]
     
     static let bigRed: Self = [
@@ -57,7 +57,7 @@ final class TsumijiTests: XCTestCase {
             .backgroundColor: Color.defaultBackground
         ]))
         singleElementAttrCase.append(NSAttributedString(string: "fontName", attributes: [
-            .font: Font(name: "impact", size: .defaultFontSize)!,
+            .font: Font(name: "times", size: .defaultFontSize)!,
             .foregroundColor: Color.default,
             .backgroundColor: Color.defaultBackground
         ]))
