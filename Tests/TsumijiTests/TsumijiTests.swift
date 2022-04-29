@@ -36,7 +36,7 @@ extension Color {
 
 final class TsumijiTests: XCTestCase {
     
-    func testExample() throws {
+    func testEditor() throws {
         
         let attrCase = NSMutableAttributedString()
         attrCase.append(NSAttributedString(string: "color", attributes: [
@@ -77,6 +77,34 @@ final class TsumijiTests: XCTestCase {
             
         
         XCTAssertEqual(editor.product, AttributedString(attrCase))
+        
+        
+    }
+    
+    func testLiteral() throws {
+        
+        let attrCase = NSMutableAttributedString()
+        attrCase.append(NSAttributedString(string: "color", attributes: [
+            .font: Font.default!,
+            .foregroundColor: Color.red,
+            .backgroundColor: Color.defaultBackground
+        ]))
+        attrCase.append(NSAttributedString(string: "fontSize", attributes: [
+            .font: Font(name: .defaultFontName, size: 50)!,
+            .foregroundColor: Color.default,
+            .backgroundColor: Color.defaultBackground
+        ]))
+        attrCase.append(NSAttributedString(string: "fontName", attributes: [
+            .font: Font(name: "impact", size: .defaultFontSize)!,
+            .foregroundColor: Color.default,
+            .backgroundColor: Color.defaultBackground
+        ]))
+        attrCase.append(NSAttributedString(string: "backgroundColor", attributes: [
+            .font: Font.default!,
+            .foregroundColor: Color.default,
+            .backgroundColor: Color.red
+        ]))
+
         
         // test : editor literal
         let editedLiteral: EditorLiteral = "\(.red)color\(.fontEnd)\(.big)fontSize\(.fontEnd)\(.impact)fontName\(.fontEnd)\(.redBack)backgroundColor\(.fontEnd)"
