@@ -1,5 +1,8 @@
 # つみじ Tsumiji
 
+[![GitHub issues](https://img.shields.io/github/issues/rrbox/Tsumiji)](https://github.com/rrbox/Tsumiji/issues)
+[![GitHub license](https://img.shields.io/github/license/rrbox/Tsumiji)](https://github.com/rrbox/Tsumiji/blob/main/LICENSE)
+
 :paperclip:[English](README_en.md)
 
 AttributedString を Builder パターンや, 文字列リテラルで作成する SwiftPM です。
