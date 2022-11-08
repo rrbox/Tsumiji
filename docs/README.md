@@ -12,7 +12,7 @@ AttributedString を Builder パターンや, 文字列リテラルで作成す�
 Tsumiji を一言で表すと, **構造化された Attributed String** です.
 
 - XML のタグのように, 文字の一部を `.font(_ attribute: Attribute)` と `.fontEnd()` で入れ子状に挟むことができます.
-- アトリビュートが入れ子状になると, **アトリビュートを合成**することができます.
+- アトリビュートを入れ子状にすることで, **アトリビュートを合成**することができます.
 
 ## DEMO
 
