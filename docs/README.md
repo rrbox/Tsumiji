@@ -35,6 +35,17 @@ let attrtext = Editor()
 
 <img width="200" alt="result_0" src="https://user-images.githubusercontent.com/87851278/160229559-24adf968-f90d-4341-b86a-636349319cd2.png">
 
+アトリビュートの構造をコメントで示すとこうなります.
+
+```swift
+let attrtext = Editor()
+//  <----------------------- impact ----------------------------------------------------------------------------------------------------
+//                <========= red ====================>                  <============= red ============>
+//                           [ impact + red ]         [     impact     ]           [ impact + red ].         [         impact          ]
+    .font(.impact).font(.red).text("Hello,").fontEnd().text(" World!\n").font(.red).text("Hi").    .fontEnd().text("こんにちはこんにちは!!")
+    .product
+```
+
 ### 文字列リテラルでの設計
 
 ```swift
