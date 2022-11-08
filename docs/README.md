@@ -41,8 +41,8 @@ let attrtext = Editor()
 let attrtext = Editor()
 //  <----------------------- impact ----------------------------------------------------------------------------------------------------
 //                <========= red ====================>                  <============= red ============>
-//                           [ impact + red ]         [     impact     ]           [ impact + red ].         [         impact          ]
-    .font(.impact).font(.red).text("Hello,").fontEnd().text(" World!\n").font(.red).text("Hi").    .fontEnd().text("こんにちはこんにちは!!")
+//                           [ impact + red ]         [     impact     ]           [ impact + red ]          [         impact          ]
+    .font(.impact).font(.red).text("Hello,").fontEnd().text(" World!\n").font(.red).text("Hi")     .fontEnd().text("こんにちはこんにちは!!")
     .product
 ```
 
