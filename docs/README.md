@@ -5,7 +5,11 @@
 
 :paperclip:[English](README_en.md)
 
-AttributedString を Builder パターンや, 文字列リテラルで作成する SwiftPM です。
+AttributedString を Builder パターンや, 文字列リテラルで作成する SwiftPM です.
+
+## Overview
+
+Tsumiji を一言で表すと, **構造化された Attributed String** です. XML のタグのように, 文字の一部を `.font(_ attribute: Attribute)` と `.fontEnd()` で入れ子状に挟むことができます.
 
 ## DEMO
 
