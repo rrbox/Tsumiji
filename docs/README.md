@@ -11,8 +11,18 @@ AttributedString を Builder パターンや, 文字列リテラルで作成す�
 
 Tsumiji を一言で表すと, **構造化された Attributed String** です.
 
+```swift
+let sample = Editor()
+    .text("white")
+    .font([.fontColor: UIColor.red]).text("red").fontEnd()
+    .text("white")
+    .product
+```
+
 - XML のタグのように, 文字の一部を `.font(_ attribute:)` と `.fontEnd()` で入れ子状に挟むことができます.
 - アトリビュートを入れ子状にすることで, **アトリビュートを合成**することができます.
+
+上記のコードの `sample` を表示するとこうなります.
 
 ## DEMO
 
