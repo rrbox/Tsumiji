@@ -22,7 +22,9 @@ let sample = Editor()
 - XML のタグのように, 文字の一部を `.font(_ attribute:)` と `.fontEnd()` で入れ子状に挟むことができます.
 - アトリビュートを入れ子状にすることで, **アトリビュートを合成**することができます.
 
-上記のコードの `sample` を表示するとこうなります.
+`sample` を SwiftUI などで表示するとこうなります.
+
+![sample_image](https://user-images.githubusercontent.com/87851278/208862874-663479af-5b22-4d44-99f0-06181c32a99c.png)
 
 ## DEMO
 
