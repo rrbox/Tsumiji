@@ -11,14 +11,6 @@ import UIKit
 import Cocoa
 #endif
 
-#if os(iOS)
-typealias Font = UIFont
-typealias Color = UIColor
-#elseif os(macOS)
-typealias Font = NSFont
-typealias Color = NSColor
-#endif
-
 extension Attribute {
     
     func toNSAttribute() -> [NSAttributedString.Key:Any] {
