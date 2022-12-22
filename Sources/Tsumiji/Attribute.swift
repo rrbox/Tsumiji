@@ -12,11 +12,11 @@ import UIKit
 #endif
 
 #if os(iOS)
-typealias Font = UIFont
-typealias Color = UIColor
+public typealias Font = UIFont
+public typealias Color = UIColor
 #elseif os(macOS)
-typealias Font = NSFont
-typealias Color = NSColor
+public typealias Font = NSFont
+public typealias Color = NSColor
 #endif
 
 public enum AttributeKey {
@@ -26,5 +26,46 @@ public enum AttributeKey {
 public typealias Attribute = [AttributeKey: Any]
 
 public struct BuilderAttribute {
-    var fontColor: Color
+    var fontName: String = "HelveticaNeue-UltraLight"
+    var fontSize: NSNumber = NSNumber(value: 32)
+    var fontColor: Color = .white
+    var backgroundColor: Color = .clear
+}
+
+public extension BuilderAttribute {
+    static func fontName(_ value: String) -> BuilderAttribute {
+        .init(fontName: value)
+    }
+    static func fontSize(_ value: NSNumber) -> BuilderAttribute {
+        .init(fontSize: value)
+    }
+    static func fontColor(_ value: Color) -> BuilderAttribute {
+        .init(fontColor: value)
+    }
+    static func backgroundColor(_ value: Color) -> BuilderAttribute {
+        .init(backgroundColor: value)
+    }
+}
+
+public extension BuilderAttribute {
+    func fontName(_ value: String) -> BuilderAttribute {
+        var result = self
+        result.fontName = value
+        return result
+    }
+    func fontSize(_ value: NSNumber) -> BuilderAttribute {
+        var result = self
+        result.fontSize = value
+        return result
+    }
+    func fontColor(_ value: Color) -> BuilderAttribute {
+        var result = self
+        result.fontColor = value
+        return result
+    }
+    func backgroundColor(_ value: Color) -> BuilderAttribute {
+        var result = self
+        result.backgroundColor = value
+        return result
+    }
 }
