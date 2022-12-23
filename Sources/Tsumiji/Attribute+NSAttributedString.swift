@@ -25,7 +25,7 @@ extension Attribute {
 
 extension AttributeContext {
     func attribute(_ attrString: inout AttributedString) {
-        attrString.foregroundColor = self.fontColor
+        attrString.foregroundColor = self.foregroundColor
         attrString.font = Font(name: self.fontName, size: CGFloat(truncating: self.fontSize))
         attrString.backgroundColor = self.backgroundColor
         

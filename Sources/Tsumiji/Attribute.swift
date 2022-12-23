@@ -28,7 +28,7 @@ public typealias Attribute = [AttributeKey: Any]
 public struct AttributeContext {
     var fontName: String = "HelveticaNeue-UltraLight"
     var fontSize: NSNumber = NSNumber(value: 32)
-    var fontColor: Color = .white
+    var foregroundColor: Color = .white
     var backgroundColor: Color = .clear
 }
 
