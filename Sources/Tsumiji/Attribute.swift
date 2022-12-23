@@ -25,45 +25,45 @@ public enum AttributeKey {
 
 public typealias Attribute = [AttributeKey: Any]
 
-public struct BuilderAttribute {
+public struct AttributeContext {
     var fontName: String = "HelveticaNeue-UltraLight"
     var fontSize: NSNumber = NSNumber(value: 32)
     var fontColor: Color = .white
     var backgroundColor: Color = .clear
 }
 
-public extension BuilderAttribute {
-    static func fontName(_ value: String) -> BuilderAttribute {
+public extension AttributeContext {
+    static func fontName(_ value: String) -> AttributeContext {
         .init(fontName: value)
     }
-    static func fontSize(_ value: NSNumber) -> BuilderAttribute {
+    static func fontSize(_ value: NSNumber) -> AttributeContext {
         .init(fontSize: value)
     }
-    static func fontColor(_ value: Color) -> BuilderAttribute {
+    static func fontColor(_ value: Color) -> AttributeContext {
         .init(fontColor: value)
     }
-    static func backgroundColor(_ value: Color) -> BuilderAttribute {
+    static func backgroundColor(_ value: Color) -> AttributeContext {
         .init(backgroundColor: value)
     }
 }
 
-public extension BuilderAttribute {
-    func fontName(_ value: String) -> BuilderAttribute {
+public extension AttributeContext {
+    func fontName(_ value: String) -> AttributeContext {
         var result = self
         result.fontName = value
         return result
     }
-    func fontSize(_ value: NSNumber) -> BuilderAttribute {
+    func fontSize(_ value: NSNumber) -> AttributeContext {
         var result = self
         result.fontSize = value
         return result
     }
-    func fontColor(_ value: Color) -> BuilderAttribute {
+    func fontColor(_ value: Color) -> AttributeContext {
         var result = self
         result.fontColor = value
         return result
     }
-    func backgroundColor(_ value: Color) -> BuilderAttribute {
+    func backgroundColor(_ value: Color) -> AttributeContext {
         var result = self
         result.backgroundColor = value
         return result
