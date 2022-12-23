@@ -32,40 +32,44 @@ public struct AttributeContext {
     var backgroundColor: Color = .clear
 }
 
-public extension AttributeContext {
-    static func fontName(_ value: String) -> AttributeContext {
-        .init(fontName: value)
+public enum AttributeElement {
+    case fontName(String)
+    case fontSize(NSNumber)
+    case foregroundColor(Color)
+    case backgroundColor(Color)
+}
+
+public indirect enum AttributeLink {
+    case single(AttributeElement)
+    case link(Self, AttributeElement)
+}
+
+public extension AttributeLink {
+    static func fontName(_ value: String) -> AttributeLink {
+        .single(.fontName(value))
     }
-    static func fontSize(_ value: NSNumber) -> AttributeContext {
-        .init(fontSize: value)
+    static func fontSize(_ value: NSNumber) -> AttributeLink {
+        .single(.fontSize(value))
     }
-    static func fontColor(_ value: Color) -> AttributeContext {
-        .init(fontColor: value)
+    static func fontColor(_ value: Color) -> AttributeLink {
+        .single(.foregroundColor(value))
     }
-    static func backgroundColor(_ value: Color) -> AttributeContext {
-        .init(backgroundColor: value)
+    static func backgroundColor(_ value: Color) -> AttributeLink {
+        .single(.backgroundColor(value))
     }
 }
 
-public extension AttributeContext {
-    func fontName(_ value: String) -> AttributeContext {
-        var result = self
-        result.fontName = value
-        return result
+public extension AttributeLink {
+    func fontName(_ value: String) -> AttributeLink {
+        .link(self, .fontName(value))
     }
-    func fontSize(_ value: NSNumber) -> AttributeContext {
-        var result = self
-        result.fontSize = value
-        return result
+    func fontSize(_ value: NSNumber) -> AttributeLink {
+        .link(self, .fontSize(value))
     }
-    func fontColor(_ value: Color) -> AttributeContext {
-        var result = self
-        result.fontColor = value
-        return result
+    func fontColor(_ value: Color) -> AttributeLink {
+        .link(self, .foregroundColor(value))
     }
-    func backgroundColor(_ value: Color) -> AttributeContext {
-        var result = self
-        result.backgroundColor = value
-        return result
+    func backgroundColor(_ value: Color) -> AttributeLink {
+        .link(self, .backgroundColor(value))
     }
 }
