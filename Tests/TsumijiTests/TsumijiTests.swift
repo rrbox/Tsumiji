@@ -28,15 +28,12 @@ extension Color {
 }
 
 extension Attribute {
-    static let red: Self = [.fontColor: Color.red]
-    static let big: Self = [.fontSize: 50]
-    static let impact: Self = [.fontName: "times"]
-    static let blueBack: Self = [.backgroundColor: Color.blue]
+    static let red: Self = .foregroundColor(.red)
+    static let big: Self = .fontSize(50)
+    static let impact: Self = .fontName("times")
+    static let blueBack: Self = .backgroundColor(.blue)
     
-    static let bigRed: Self = [
-        .fontSize: 50,
-        .fontColor: Color.red
-    ]
+    static let bigRed: Self = .fontSize(50).foregroundColor(.red)
 }
 
 final class TsumijiTests: XCTestCase {
