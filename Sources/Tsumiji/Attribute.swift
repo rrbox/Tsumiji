@@ -19,7 +19,7 @@ public typealias Font = NSFont
 public typealias Color = NSColor
 #endif
 
-public struct AttributeContext {
+struct AttributeContext {
     var fontName: String = "HelveticaNeue-UltraLight"
     var fontSize: NSNumber = NSNumber(value: 32)
     var foregroundColor: Color = .white
