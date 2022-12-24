@@ -11,7 +11,7 @@ public struct Editor {
     
     public var product = AttributedString()
     
-    var stack = Stack(attrributeStack: [[:]])
+    var stack = ContextStack()
     
     public init() {}
     
@@ -21,13 +21,15 @@ public struct Editor {
     
     @discardableResult public func text(_ value: String) -> Self {
         var result = self
-        result.product.append(AttributedString(NSAttributedString(string: value, attributes: self.stack.getFirst().toNSAttribute())))
+        var attributedText = AttributedString(value)
+        self.stack.getFirst().attribute(&attributedText)
+        result.product += attributedText
         return result
     }
     
     @discardableResult public func font(_ value: Attribute) -> Self {
         var result = self
-        try! result.stack.add(attr: value)
+        result.stack.add(attr: value)
         return result
     }
     
