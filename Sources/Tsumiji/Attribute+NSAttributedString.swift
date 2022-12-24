@@ -5,10 +5,10 @@
 //  Created by rrbox on 2022/12/22.
 //
 
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
+#if os(macOS)
 import AppKit
+#elseif os(iOS)
+import UIKit
 #endif
 
 extension AttributeContext {

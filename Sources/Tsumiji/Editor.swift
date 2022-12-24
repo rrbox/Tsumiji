@@ -11,7 +11,6 @@ public struct Editor {
     
     public var product = AttributedString()
     
-//    var stack = Stack(attrributeStack: [[:]])
     var stack = ContextStack()
     
     public init() {}
