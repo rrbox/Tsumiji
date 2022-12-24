@@ -28,7 +28,7 @@ public struct Editor {
         return result
     }
     
-    @discardableResult public func font(_ value: AttributeLink) -> Self {
+    @discardableResult public func font(_ value: Attribute) -> Self {
         var result = self
         result.stack.add(attr: value)
         return result

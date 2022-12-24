@@ -14,7 +14,7 @@ struct ContextStack {
         }
     }
     
-    mutating func add(attr: AttributeLink) {
+    mutating func add(attr: Attribute) {
         if var previous = self.attrributeStack.first {
             attr.modify(&previous)
             self.attrributeStack.insert(previous, at: 0)

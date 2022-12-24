@@ -27,7 +27,7 @@ public struct EditorInterpolation: StringInterpolationProtocol {
         self.product += arrtibutedText
     }
     
-    mutating public func appendInterpolation(_ font: AttributeLink) {
+    mutating public func appendInterpolation(_ font: Attribute) {
         self.stack.add(attr: font)
     }
     

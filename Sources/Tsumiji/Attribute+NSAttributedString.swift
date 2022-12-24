@@ -35,7 +35,7 @@ extension AttributeElement {
     }
 }
 
-extension AttributeLink {
+extension Attribute {
     func modify(_ context: inout AttributeContext) {
         switch self {
         case let .single(element):

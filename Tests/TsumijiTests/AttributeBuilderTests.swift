@@ -34,7 +34,7 @@ import SwiftUI
 //    static let defaultBackground = Color.clear
 //}
 
-extension AttributeLink {
+extension Attribute {
     static let red: Self = .fontColor(.red)
     static let big: Self = .fontSize(50)
     static let impact: Self = .fontName("times")

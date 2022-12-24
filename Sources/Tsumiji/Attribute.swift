@@ -33,37 +33,37 @@ public enum AttributeElement {
     case backgroundColor(Color)
 }
 
-public indirect enum AttributeLink {
+public indirect enum Attribute {
     case single(AttributeElement)
     case link(Self, AttributeElement)
 }
 
-public extension AttributeLink {
-    static func fontName(_ value: String) -> AttributeLink {
+public extension Attribute {
+    static func fontName(_ value: String) -> Attribute {
         .single(.fontName(value))
     }
-    static func fontSize(_ value: NSNumber) -> AttributeLink {
+    static func fontSize(_ value: NSNumber) -> Attribute {
         .single(.fontSize(value))
     }
-    static func fontColor(_ value: Color) -> AttributeLink {
+    static func fontColor(_ value: Color) -> Attribute {
         .single(.foregroundColor(value))
     }
-    static func backgroundColor(_ value: Color) -> AttributeLink {
+    static func backgroundColor(_ value: Color) -> Attribute {
         .single(.backgroundColor(value))
     }
 }
 
-public extension AttributeLink {
-    func fontName(_ value: String) -> AttributeLink {
+public extension Attribute {
+    func fontName(_ value: String) -> Attribute {
         .link(self, .fontName(value))
     }
-    func fontSize(_ value: NSNumber) -> AttributeLink {
+    func fontSize(_ value: NSNumber) -> Attribute {
         .link(self, .fontSize(value))
     }
-    func fontColor(_ value: Color) -> AttributeLink {
+    func fontColor(_ value: Color) -> Attribute {
         .link(self, .foregroundColor(value))
     }
-    func backgroundColor(_ value: Color) -> AttributeLink {
+    func backgroundColor(_ value: Color) -> Attribute {
         .link(self, .backgroundColor(value))
     }
 }
