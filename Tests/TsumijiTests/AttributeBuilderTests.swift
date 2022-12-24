@@ -6,30 +6,135 @@
 //
 
 import XCTest
+import SwiftUI
+@testable import Tsumiji
+
+//#if os(macOS)
+//typealias Font = NSFont
+//typealias Color = NSColor
+//#elseif os(iOS)
+//typealias Font = UIFont
+//typealias Color = UIColor
+//#endif
+
+//extension String {
+//    static let defaultFontName = "HelveticaNeue-UltraLight"
+//}
+//
+//extension CGFloat {
+//    static let defaultFontSize = CGFloat(32)
+//}
+//
+//extension Font {
+//    static let `default` = Font(name: "HelveticaNeue-UltraLight", size: 32)
+//}
+//
+//extension Color {
+//    static let `default` = Color.white
+//    static let defaultBackground = Color.clear
+//}
+
+extension AttributeLink {
+    static let red: Self = .fontColor(.red)
+    static let big: Self = .fontSize(50)
+    static let impact: Self = .fontName("times")
+    static let blueBack: Self = .fontColor(.blue)
+    
+    static let bigRed: Self = .fontSize(50).fontColor(.red)
+}
 
 final class AttributeBuilderTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    let singleElementAttrCase = NSMutableAttributedString()
+    let complexElemetAttrCase = NSMutableAttributedString()
+    
+    override func setUp() async throws {
+        
+        singleElementAttrCase.append(NSAttributedString(string: "color", attributes: [
+            .font: Font.default!,
+            .foregroundColor: Color.red,
+            .backgroundColor: Color.defaultBackground
+        ]))
+        singleElementAttrCase.append(NSAttributedString(string: "fontSize", attributes: [
+            .font: Font(name: .defaultFontName, size: 50)!,
+            .foregroundColor: Color.default,
+            .backgroundColor: Color.defaultBackground
+        ]))
+        singleElementAttrCase.append(NSAttributedString(string: "fontName", attributes: [
+            .font: Font(name: "times", size: .defaultFontSize)!,
+            .foregroundColor: Color.default,
+            .backgroundColor: Color.defaultBackground
+        ]))
+        singleElementAttrCase.append(NSAttributedString(string: "backgroundColor", attributes: [
+            .font: Font.default!,
+            .foregroundColor: Color.default,
+            .backgroundColor: Color.blue
+        ]))
+        
+        complexElemetAttrCase.append(NSAttributedString(string: "color + backgroundColor", attributes: [
+            .font: Font.default!,
+            .foregroundColor: Color.red,
+            .backgroundColor: Color.blue
+        ]))
+        complexElemetAttrCase.append(NSAttributedString(string: "fontSize + color", attributes: [
+            .font: Font(name: .defaultFontName, size: 50)!,
+            .foregroundColor: Color.red,
+            .backgroundColor: Color.defaultBackground
+        ]))
+        
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func testEditor() throws {
+        
+        // test : builder pattern
+        let editor = Editor()
+            .font(.red)
+            .text("color")
+            .fontEnd()
+            .font(.big)
+            .text("fontSize")
+            .fontEnd()
+            .font(.impact)
+            .text("fontName")
+            .fontEnd()
+            .font(.blueBack)
+            .text("backgroundColor")
+            .fontEnd()
+            
+        XCTAssertEqual(editor.product, AttributedString(singleElementAttrCase))
+        
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func testLiteral() throws {
+        
+        // test : editor literal
+        let editedLiteral: EditorLiteral = "\(.red)color\(.fontEnd)\(.big)fontSize\(.fontEnd)\(.impact)fontName\(.fontEnd)\(.blueBack)backgroundColor\(.fontEnd)"
+        
+        XCTAssertEqual(editedLiteral.product, AttributedString(singleElementAttrCase))
+        
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testComplexElementEditor() throws {
+        let editor = Editor()
+            .font(.red)
+            .font(.blueBack)
+            .text("color + backgroundColor")
+            .fontEnd()
+            .fontEnd()
+            .font(.bigRed)
+            .text("fontSize + color")
+            .fontEnd()
+        
+        XCTAssertEqual(editor.product, AttributedString(complexElemetAttrCase))
     }
-
+    
+    func testComplexElementLiteral() throws {
+        
+        let editedLiteral: EditorLiteral = "\(.red)\(.blueBack)color + backgroundColor\(.fontEnd)\(.fontEnd)\(.bigRed)fontSize + color\(.fontEnd)"
+        
+        XCTAssertEqual(editedLiteral.product, AttributedString(complexElemetAttrCase))
+        
+    }
+    
 }
+
