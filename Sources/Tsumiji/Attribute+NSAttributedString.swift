@@ -13,7 +13,7 @@ import Cocoa
 
 extension Attribute {
     
-    func toNSAttribute() -> [NSAttributedString.Key:Any] {
+    func toNSAttribute() -> [NSAttributedString.Key: Any] {
         return [
             .font: Font(name: self[.fontName] as? String ?? "HelveticaNeue-UltraLight", size: CGFloat(truncating: self[.fontSize] as? NSNumber ?? NSNumber(value: 32))) ?? Font(),
             .foregroundColor:self[.fontColor] ?? Color.white,
@@ -58,5 +58,11 @@ extension AttributeLink {
             element.modify(&context)
             break
         }
+    }
+    
+    func createContext() -> AttributeContext {
+        var result = AttributeContext()
+        self.modify(&result)
+        return result
     }
 }
