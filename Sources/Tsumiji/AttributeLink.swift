@@ -26,7 +26,7 @@ struct AttributeContext {
     var backgroundColor: Color = .clear
 }
 
-public enum AttributeElement {
+enum AttributeElement {
     case fontName(String)
     case fontSize(NSNumber)
     case foregroundColor(Color)
