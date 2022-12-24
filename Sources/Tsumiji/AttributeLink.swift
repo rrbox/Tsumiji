@@ -33,37 +33,44 @@ public enum AttributeElement {
     case backgroundColor(Color)
 }
 
-public indirect enum Attribute {
+indirect enum AttributeLink {
     case single(AttributeElement)
     case link(Self, AttributeElement)
 }
 
+public struct Attribute {
+    let body: AttributeLink
+    init(body: AttributeLink) {
+        self.body = body
+    }
+}
+
 public extension Attribute {
     static func fontName(_ value: String) -> Attribute {
-        .single(.fontName(value))
+        .init(body: .single(.fontName(value)))
     }
     static func fontSize(_ value: NSNumber) -> Attribute {
-        .single(.fontSize(value))
+        .init(body: .single(.fontSize(value)))
     }
     static func fontColor(_ value: Color) -> Attribute {
-        .single(.foregroundColor(value))
+        .init(body: .single(.foregroundColor(value)))
     }
     static func backgroundColor(_ value: Color) -> Attribute {
-        .single(.backgroundColor(value))
+        .init(body: .single(.backgroundColor(value)))
     }
 }
 
 public extension Attribute {
     func fontName(_ value: String) -> Attribute {
-        .link(self, .fontName(value))
+        .init(body: .link(self.body, .fontName(value)))
     }
     func fontSize(_ value: NSNumber) -> Attribute {
-        .link(self, .fontSize(value))
+        .init(body: .link(self.body, .fontSize(value)))
     }
     func fontColor(_ value: Color) -> Attribute {
-        .link(self, .foregroundColor(value))
+        .init(body: .link(self.body, .foregroundColor(value)))
     }
     func backgroundColor(_ value: Color) -> Attribute {
-        .link(self, .backgroundColor(value))
+        .init(body: .link(self.body, .backgroundColor(value)))
     }
 }

@@ -16,10 +16,10 @@ struct ContextStack {
     
     mutating func add(attr: Attribute) {
         if var previous = self.attrributeStack.first {
-            attr.modify(&previous)
+            attr.body.modify(&previous)
             self.attrributeStack.insert(previous, at: 0)
         } else {
-            self.attrributeStack.insert(attr.createContext(), at: 0)
+            self.attrributeStack.insert(attr.body.createContext(), at: 0)
         }
     }
     
