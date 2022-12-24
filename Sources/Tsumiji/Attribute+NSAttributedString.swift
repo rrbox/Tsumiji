@@ -52,11 +52,9 @@ extension AttributeLink {
         switch self {
         case let .single(element):
             element.modify(&context)
-            break
         case let .link(previous, element):
             previous.modify(&context)
             element.modify(&context)
-            break
         }
     }
     
