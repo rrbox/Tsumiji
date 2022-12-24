@@ -52,7 +52,7 @@ public extension Attribute {
     static func fontSize(_ value: NSNumber) -> Attribute {
         .init(body: .single(.fontSize(value)))
     }
-    static func fontColor(_ value: Color) -> Attribute {
+    static func foregroundColor(_ value: Color) -> Attribute {
         .init(body: .single(.foregroundColor(value)))
     }
     static func backgroundColor(_ value: Color) -> Attribute {
@@ -67,7 +67,7 @@ public extension Attribute {
     func fontSize(_ value: NSNumber) -> Attribute {
         .init(body: .link(self.body, .fontSize(value)))
     }
-    func fontColor(_ value: Color) -> Attribute {
+    func foregroundColor(_ value: Color) -> Attribute {
         .init(body: .link(self.body, .foregroundColor(value)))
     }
     func backgroundColor(_ value: Color) -> Attribute {
