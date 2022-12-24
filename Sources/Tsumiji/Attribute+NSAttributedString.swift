@@ -8,7 +8,7 @@
 #if os(iOS)
 import UIKit
 #elseif os(macOS)
-import Cocoa
+import AppKit
 #endif
 
 extension AttributeContext {

@@ -8,7 +8,7 @@
 #if os(macOS)
 import AppKit
 #elseif os(iOS)
-import UIKit
+import AppKit
 #endif
 
 #if os(iOS)
