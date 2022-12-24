@@ -19,12 +19,6 @@ public typealias Font = NSFont
 public typealias Color = NSColor
 #endif
 
-public enum AttributeKey {
-    case fontName, fontSize, fontColor, backgroundColor
-}
-
-public typealias Attribute = [AttributeKey: Any]
-
 public struct AttributeContext {
     var fontName: String = "HelveticaNeue-UltraLight"
     var fontSize: NSNumber = NSNumber(value: 32)

@@ -11,18 +11,6 @@ import UIKit
 import Cocoa
 #endif
 
-extension Attribute {
-    
-    func toNSAttribute() -> [NSAttributedString.Key: Any] {
-        return [
-            .font: Font(name: self[.fontName] as? String ?? "HelveticaNeue-UltraLight", size: CGFloat(truncating: self[.fontSize] as? NSNumber ?? NSNumber(value: 32))) ?? Font(),
-            .foregroundColor:self[.fontColor] ?? Color.white,
-            .backgroundColor:self[.backgroundColor] ?? Color.clear
-        ]
-    }
-    
-}
-
 extension AttributeContext {
     func attribute(_ attrString: inout AttributedString) {
         attrString.foregroundColor = self.foregroundColor

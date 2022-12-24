@@ -15,7 +15,6 @@ public struct EditorInterpolation: StringInterpolationProtocol {
     
     var product: AttributedString
     
-//    var stack = Stack(attrributeStack: [[:]])
     var stack = ContextStack()
     
     public init(literalCapacity: Int, interpolationCount: Int) {
@@ -26,17 +25,7 @@ public struct EditorInterpolation: StringInterpolationProtocol {
         var arrtibutedText = AttributedString(literal)
         self.stack.getFirst().attribute(&arrtibutedText)
         self.product += arrtibutedText
-//        self.product.append(AttributedString(
-//            NSAttributedString(
-//                string: literal,
-//                attributes: self.stack
-//                    .getFirst()
-//                    .toNSAttribute())))
     }
-    
-//    mutating public func appendInterpolation(_ font: Attribute) {
-//        try! self.stack.add(attr: font)
-//    }
     
     mutating public func appendInterpolation(_ font: AttributeLink) {
         self.stack.add(attr: font)
@@ -54,12 +43,6 @@ public struct EditorLiteral: ExpressibleByStringLiteral, ExpressibleByStringInte
     public var product: AttributedString
     
     public init(stringLiteral value: String) {
-//        self.product = AttributedString(
-//            NSAttributedString(
-//                string: value,
-//                attributes: Stack(attrributeStack: [[:]])
-//                    .getFirst()
-//                    .toNSAttribute()))
         self.product = AttributedString(value)
         ContextStack().getFirst().attribute(&self.product)
     }
