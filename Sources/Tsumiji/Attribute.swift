@@ -5,11 +5,7 @@
 //  Created by rrbox on 2022/02/09.
 //
 
-#if os(macOS)
-import AppKit
-#elseif os(iOS)
-import UIKit
-#endif
+import SwiftUI
 
 #if os(iOS)
 public typealias Font = UIFont
