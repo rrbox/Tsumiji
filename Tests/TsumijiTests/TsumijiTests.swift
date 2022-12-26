@@ -38,42 +38,51 @@ extension Attribute {
 
 final class TsumijiTests: XCTestCase {
     
-    let singleElementAttrCase = NSMutableAttributedString()
-    let complexElemetAttrCase = NSMutableAttributedString()
+    var singleElement = AttributedString()
+    var complexElement = AttributedString()
+    
+    override func setUp() {
+        
+        
+    }
     
     override func setUp() async throws {
         
-        singleElementAttrCase.append(NSAttributedString(string: "color", attributes: [
-            .font: Font.default!,
-            .foregroundColor: Color.red,
-            .backgroundColor: Color.defaultBackground
-        ]))
-        singleElementAttrCase.append(NSAttributedString(string: "fontSize", attributes: [
-            .font: Font(name: .defaultFontName, size: 50)!,
-            .foregroundColor: Color.default,
-            .backgroundColor: Color.defaultBackground
-        ]))
-        singleElementAttrCase.append(NSAttributedString(string: "fontName", attributes: [
-            .font: Font(name: "times", size: .defaultFontSize)!,
-            .foregroundColor: Color.default,
-            .backgroundColor: Color.defaultBackground
-        ]))
-        singleElementAttrCase.append(NSAttributedString(string: "backgroundColor", attributes: [
-            .font: Font.default!,
-            .foregroundColor: Color.default,
-            .backgroundColor: Color.blue
-        ]))
+        var color = AttributedString("color")
+        color.font = Font.default!
+        color.foregroundColor = Color.red
+        color.backgroundColor = .defaultBackground
+        singleElement += color
         
-        complexElemetAttrCase.append(NSAttributedString(string: "color + backgroundColor", attributes: [
-            .font: Font.default!,
-            .foregroundColor: Color.red,
-            .backgroundColor: Color.blue
-        ]))
-        complexElemetAttrCase.append(NSAttributedString(string: "fontSize + color", attributes: [
-            .font: Font(name: .defaultFontName, size: 50)!,
-            .foregroundColor: Color.red,
-            .backgroundColor: Color.defaultBackground
-        ]))
+        var fontSize = AttributedString("fontSize")
+        fontSize.font = Font(name: .defaultFontName, size: 50)!
+        fontSize.foregroundColor = .default
+        fontSize.backgroundColor = .defaultBackground
+        singleElement += fontSize
+        
+        var fontName = AttributedString("fontName")
+        fontName.font = Font(name: "times", size: .defaultFontSize)!
+        fontName.foregroundColor = .default
+        fontName.backgroundColor = .defaultBackground
+        singleElement += fontName
+        
+        var backgroundColor = AttributedString("backgroundColor")
+        backgroundColor.font = .default
+        backgroundColor.foregroundColor = .default
+        backgroundColor.backgroundColor = Color.blue
+        singleElement += backgroundColor
+        
+        var colorBackground = AttributedString("color + backgroundColor")
+        colorBackground.font = .default
+        colorBackground.foregroundColor = Color.red
+        colorBackground.backgroundColor = Color.blue
+        complexElement += colorBackground
+        
+        var fontSizeColor = AttributedString("fontSize + color")
+        fontSizeColor.font = Font(name: .defaultFontName, size: 50)!
+        fontSizeColor.foregroundColor = Color.red
+        fontSizeColor.backgroundColor = .defaultBackground
+        complexElement += fontSizeColor
         
     }
     
@@ -94,7 +103,7 @@ final class TsumijiTests: XCTestCase {
             .text("backgroundColor")
             .fontEnd()
             
-        XCTAssertEqual(editor.product, AttributedString(singleElementAttrCase))
+        XCTAssertEqual(editor.product, singleElement)
         
     }
     
@@ -103,7 +112,7 @@ final class TsumijiTests: XCTestCase {
         // test : editor literal
         let editedLiteral: EditorLiteral = "\(.red)color\(.fontEnd)\(.big)fontSize\(.fontEnd)\(.impact)fontName\(.fontEnd)\(.blueBack)backgroundColor\(.fontEnd)"
         
-        XCTAssertEqual(editedLiteral.product, AttributedString(singleElementAttrCase))
+        XCTAssertEqual(editedLiteral.product, singleElement)
         
     }
     
@@ -118,14 +127,14 @@ final class TsumijiTests: XCTestCase {
             .text("fontSize + color")
             .fontEnd()
         
-        XCTAssertEqual(editor.product, AttributedString(complexElemetAttrCase))
+        XCTAssertEqual(editor.product, complexElement)
     }
     
     func testComplexElementLiteral() throws {
         
         let editedLiteral: EditorLiteral = "\(.red)\(.blueBack)color + backgroundColor\(.fontEnd)\(.fontEnd)\(.bigRed)fontSize + color\(.fontEnd)"
         
-        XCTAssertEqual(editedLiteral.product, AttributedString(complexElemetAttrCase))
+        XCTAssertEqual(editedLiteral.product, complexElement)
         
     }
     
