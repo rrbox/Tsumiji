@@ -18,6 +18,7 @@ struct AttributeContext {
     var fontSize: NSNumber = NSNumber(value: 32)
     var foregroundColor: Scope.ForegroundColorAttribute.Value = .white
     var backgroundColor: Scope.BackgroundColorAttribute.Value = .clear
+    var kern: Scope.KernAttribute.Value = .zero
 }
 
 enum AttributeElement {
@@ -25,6 +26,7 @@ enum AttributeElement {
     case fontSize(NSNumber)
     case foregroundColor(Scope.ForegroundColorAttribute.Value)
     case backgroundColor(Scope.BackgroundColorAttribute.Value)
+    case kern(Scope.KernAttribute.Value)
 }
 
 indirect enum AttributeLink {
@@ -52,6 +54,9 @@ public extension Attribute {
     static func backgroundColor(_ value: Scope.BackgroundColorAttribute.Value) -> Attribute {
         .init(body: .single(.backgroundColor(value)))
     }
+    static func kern(_ value: Scope.KernAttribute.Value) -> Attribute {
+        .init(body: .single(.kern(value)))
+    }
 }
 
 public extension Attribute {
@@ -66,5 +71,8 @@ public extension Attribute {
     }
     func backgroundColor(_ value: Scope.BackgroundColorAttribute.Value) -> Attribute {
         .init(body: .link(self.body, .backgroundColor(value)))
+    }
+    func kern(_ value: Scope.KernAttribute.Value) -> Attribute {
+        .init(body: .link(self.body, .kern(value)))
     }
 }

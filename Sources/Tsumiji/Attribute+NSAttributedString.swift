@@ -12,7 +12,7 @@ extension AttributeContext {
         attrString.foregroundColor = self.foregroundColor
         attrString.font = Scope.FontAttribute.Value(name: self.fontName, size: CGFloat(truncating: self.fontSize))
         attrString.backgroundColor = self.backgroundColor
-        
+        attrString.kern = self.kern
     }
 }
 
@@ -27,6 +27,8 @@ extension AttributeElement {
             context.foregroundColor = value
         case let .backgroundColor(value):
             context.backgroundColor = value
+        case let .kern(value):
+            context.kern = value
         }
     }
 }

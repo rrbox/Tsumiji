@@ -32,6 +32,7 @@ extension Attribute {
     static let big: Self = .fontSize(50)
     static let impact: Self = .fontName("times")
     static let blueBack: Self = .backgroundColor(.blue)
+    static let wideKern: Self = .kern(10)
     
     static let bigRed: Self = .fontSize(50).foregroundColor(.red)
 }
@@ -52,36 +53,49 @@ final class TsumijiTests: XCTestCase {
         color.font = Font.default!
         color.foregroundColor = Color.red
         color.backgroundColor = .defaultBackground
+        color.kern = 0
         singleElement += color
         
         var fontSize = AttributedString("fontSize")
         fontSize.font = Font(name: .defaultFontName, size: 50)!
         fontSize.foregroundColor = .default
         fontSize.backgroundColor = .defaultBackground
+        fontSize.kern = 0
         singleElement += fontSize
         
         var fontName = AttributedString("fontName")
         fontName.font = Font(name: "times", size: .defaultFontSize)!
         fontName.foregroundColor = .default
         fontName.backgroundColor = .defaultBackground
+        fontName.kern = 0
         singleElement += fontName
         
         var backgroundColor = AttributedString("backgroundColor")
         backgroundColor.font = .default
         backgroundColor.foregroundColor = .default
         backgroundColor.backgroundColor = Color.blue
+        backgroundColor.kern = 0
         singleElement += backgroundColor
+        
+        var kern = AttributedString("wideKern")
+        kern.font = .default
+        kern.foregroundColor = .default
+        kern.backgroundColor = .defaultBackground
+        kern.kern = 10
+        singleElement += kern
         
         var colorBackground = AttributedString("color + backgroundColor")
         colorBackground.font = .default
         colorBackground.foregroundColor = Color.red
         colorBackground.backgroundColor = Color.blue
+        colorBackground.kern = 0
         complexElement += colorBackground
         
         var fontSizeColor = AttributedString("fontSize + color")
         fontSizeColor.font = Font(name: .defaultFontName, size: 50)!
         fontSizeColor.foregroundColor = Color.red
         fontSizeColor.backgroundColor = .defaultBackground
+        fontSizeColor.kern = 0
         complexElement += fontSizeColor
         
     }
@@ -101,6 +115,9 @@ final class TsumijiTests: XCTestCase {
             .fontEnd()
             .font(.blueBack)
             .text("backgroundColor")
+            .fontEnd()
+            .font(.wideKern)
+            .text("wideKern")
             .fontEnd()
             
         XCTAssertEqual(editor.product, singleElement)
