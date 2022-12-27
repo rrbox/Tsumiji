@@ -27,6 +27,8 @@ extension AttributeElement {
             context.container.backgroundColor = value
         case let .kern(value):
             context.container.kern = value
+        case let .tracking(value):
+            context.container.tracking = value
         }
     }
 }

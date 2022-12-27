@@ -25,6 +25,7 @@ enum AttributeElement {
     case foregroundColor(Scope.ForegroundColorAttribute.Value)
     case backgroundColor(Scope.BackgroundColorAttribute.Value)
     case kern(Scope.KernAttribute.Value)
+    case tracking(Scope.TrackingAttribute.Value)
 }
 
 indirect enum AttributeLink {
@@ -55,6 +56,9 @@ public extension Attribute {
     static func kern(_ value: Scope.KernAttribute.Value) -> Attribute {
         .init(body: .single(.kern(value)))
     }
+    static func tracking(_ value: Scope.TrackingAttribute.Value) -> Attribute {
+        .init(body: .single(.tracking(value)))
+    }
 }
 
 public extension Attribute {
@@ -72,5 +76,8 @@ public extension Attribute {
     }
     func kern(_ value: Scope.KernAttribute.Value) -> Attribute {
         .init(body: .link(self.body, .kern(value)))
+    }
+    func tracking(_ value: Scope.TrackingAttribute.Value) -> Attribute {
+        .init(body: .link(self.body, .tracking(value)))
     }
 }

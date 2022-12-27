@@ -33,6 +33,7 @@ extension Attribute {
     static let impact: Self = .fontName("times")
     static let blueBack: Self = .backgroundColor(.blue)
     static let wideKern: Self = .kern(10)
+    static let wideTracking: Self = .tracking(1)
     
     static let bigRed: Self = .fontSize(50).foregroundColor(.red)
 }
@@ -72,6 +73,11 @@ final class TsumijiTests: XCTestCase {
         kern.kern = 10
         singleElement += kern
         
+        var tracking = AttributedString("tracking")
+        tracking.font = .default
+        tracking.tracking = 1
+        singleElement += tracking
+        
         var colorBackground = AttributedString("color + backgroundColor")
         colorBackground.font = .default
         colorBackground.foregroundColor = Color.red
@@ -104,6 +110,9 @@ final class TsumijiTests: XCTestCase {
             .font(.wideKern)
             .text("wideKern")
             .fontEnd()
+            .font(.wideTracking)
+            .text("tracking")
+            .fontEnd()
             
         XCTAssertEqual(editor.product, singleElement)
         
@@ -112,7 +121,7 @@ final class TsumijiTests: XCTestCase {
     func testLiteral() throws {
         
         // test : editor literal
-        let editedLiteral: EditorLiteral = "\(.red)color\(.fontEnd)\(.big)fontSize\(.fontEnd)\(.impact)fontName\(.fontEnd)\(.blueBack)backgroundColor\(.fontEnd)\(.wideKern)wideKern\(.fontEnd)"
+        let editedLiteral: EditorLiteral = "\(.red)color\(.fontEnd)\(.big)fontSize\(.fontEnd)\(.impact)fontName\(.fontEnd)\(.blueBack)backgroundColor\(.fontEnd)\(.wideKern)wideKern\(.fontEnd)\(.wideTracking)tracking\(.fontEnd)"
         
         XCTAssertEqual(editedLiteral.product, singleElement)
         
