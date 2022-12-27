@@ -16,9 +16,7 @@ public typealias Scope = AttributeScopes.AppKitAttributes
 struct AttributeContext {
     var fontName: String = "HelveticaNeue-UltraLight"
     var fontSize: NSNumber = NSNumber(value: 32)
-    var foregroundColor: Scope.ForegroundColorAttribute.Value = .white
-    var backgroundColor: Scope.BackgroundColorAttribute.Value = .clear
-    var kern: Scope.KernAttribute.Value = .zero
+    var container: AttributeContainer = AttributeContainer()
 }
 
 enum AttributeElement {
