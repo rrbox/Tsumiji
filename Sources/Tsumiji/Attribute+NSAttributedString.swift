@@ -10,7 +10,7 @@ import SwiftUI
 extension AttributeContext {
     func attribute(_ attrString: inout AttributedString) {
         attrString.foregroundColor = self.foregroundColor
-        attrString.font = Font(name: self.fontName, size: CGFloat(truncating: self.fontSize))
+        attrString.font = Scopes.FontAttribute.Value(name: self.fontName, size: CGFloat(truncating: self.fontSize))
         attrString.backgroundColor = self.backgroundColor
         
     }
