@@ -8,23 +8,23 @@
 import SwiftUI
 
 #if os(iOS)
-public typealias Scopes = AttributeScopes.UIKitAttributes
+public typealias Scope = AttributeScopes.UIKitAttributes
 #elseif os(macOS)
-public typealias Scopes = AttributeScopes.AppKitAttributes
+public typealias Scope = AttributeScopes.AppKitAttributes
 #endif
 
 struct AttributeContext {
     var fontName: String = "HelveticaNeue-UltraLight"
     var fontSize: NSNumber = NSNumber(value: 32)
-    var foregroundColor: Scopes.ForegroundColorAttribute.Value = .white
-    var backgroundColor: Scopes.BackgroundColorAttribute.Value = .clear
+    var foregroundColor: Scope.ForegroundColorAttribute.Value = .white
+    var backgroundColor: Scope.BackgroundColorAttribute.Value = .clear
 }
 
 enum AttributeElement {
     case fontName(String)
     case fontSize(NSNumber)
-    case foregroundColor(Scopes.ForegroundColorAttribute.Value)
-    case backgroundColor(Scopes.BackgroundColorAttribute.Value)
+    case foregroundColor(Scope.ForegroundColorAttribute.Value)
+    case backgroundColor(Scope.BackgroundColorAttribute.Value)
 }
 
 indirect enum AttributeLink {
@@ -46,10 +46,10 @@ public extension Attribute {
     static func fontSize(_ value: NSNumber) -> Attribute {
         .init(body: .single(.fontSize(value)))
     }
-    static func foregroundColor(_ value: Scopes.ForegroundColorAttribute.Value) -> Attribute {
+    static func foregroundColor(_ value: Scope.ForegroundColorAttribute.Value) -> Attribute {
         .init(body: .single(.foregroundColor(value)))
     }
-    static func backgroundColor(_ value: Scopes.BackgroundColorAttribute.Value) -> Attribute {
+    static func backgroundColor(_ value: Scope.BackgroundColorAttribute.Value) -> Attribute {
         .init(body: .single(.backgroundColor(value)))
     }
 }
@@ -61,10 +61,10 @@ public extension Attribute {
     func fontSize(_ value: NSNumber) -> Attribute {
         .init(body: .link(self.body, .fontSize(value)))
     }
-    func foregroundColor(_ value: Scopes.ForegroundColorAttribute.Value) -> Attribute {
+    func foregroundColor(_ value: Scope.ForegroundColorAttribute.Value) -> Attribute {
         .init(body: .link(self.body, .foregroundColor(value)))
     }
-    func backgroundColor(_ value: Scopes.BackgroundColorAttribute.Value) -> Attribute {
+    func backgroundColor(_ value: Scope.BackgroundColorAttribute.Value) -> Attribute {
         .init(body: .link(self.body, .backgroundColor(value)))
     }
 }
