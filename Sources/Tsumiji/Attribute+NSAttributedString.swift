@@ -29,6 +29,8 @@ extension AttributeElement {
             context.container.kern = value
         case let .tracking(value):
             context.container.tracking = value
+        case let .baselineOffset(value):
+            context.container.baselineOffset = value
         }
     }
 }
