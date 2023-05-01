@@ -5,18 +5,12 @@
 //  Created by rrbox on 2022/12/22.
 //
 
-#if os(macOS)
-import AppKit
-#elseif os(iOS)
-import UIKit
-#endif
+import SwiftUI
 
 extension AttributeContext {
     func attribute(_ attrString: inout AttributedString) {
-        attrString.foregroundColor = self.foregroundColor
-        attrString.font = Font(name: self.fontName, size: CGFloat(truncating: self.fontSize))
-        attrString.backgroundColor = self.backgroundColor
-        
+        attrString.mergeAttributes(self.container)
+        attrString.font = Scope.FontAttribute.Value(name: self.fontName, size: CGFloat(truncating: self.fontSize))
     }
 }
 
@@ -28,9 +22,15 @@ extension AttributeElement {
         case let .fontSize(value):
             context.fontSize = value
         case let .foregroundColor(value):
-            context.foregroundColor = value
+            context.container.foregroundColor = value
         case let .backgroundColor(value):
-            context.backgroundColor = value
+            context.container.backgroundColor = value
+        case let .kern(value):
+            context.container.kern = value
+        case let .tracking(value):
+            context.container.tracking = value
+        case let .baselineOffset(value):
+            context.container.baselineOffset = value
         }
     }
 }
@@ -47,7 +47,7 @@ extension AttributeLink {
     }
     
     func createContext() -> AttributeContext {
-        var result = AttributeContext()
+        var result = AttributeContext(container: AttributeContainer())
         self.modify(&result)
         return result
     }

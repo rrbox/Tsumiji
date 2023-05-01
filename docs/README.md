@@ -14,7 +14,7 @@ Tsumiji を一言で表すと, **構造化された Attributed String** です.
 ```swift
 let sample = Editor()
     .text("white")
-    .font([.fontColor: UIColor.red]).text("red").fontEnd()
+    .font(.foregroundColor(.red)).text("red").fontEnd()
     .text("white")
     .product
 ```
@@ -32,8 +32,8 @@ let sample = Editor()
 
 ``` swift
 extension Attribute {
-    static let impact: Attribute = [.fontName: "Impact"]
-    static let red: Attribute = [.fontColor: UIColor.red]
+    static let impact: Attribute = .fontName("Impact")
+    static let red: Attribute = .foregtoundColor(.red)
 }
 
 
@@ -62,9 +62,9 @@ let attrtext = Editor()
 
 ```swift
 extension Attribute {
-    static let red: Self = [.fontColor: NSColor.red]
-    static let impact: Self = [.fontName: "Impact"]
-    static let roman: Self = [.fontName: "times new roman"]
+    static let red: Attribute = .foregroundColor(.red)
+    static let impact: Attribute = .fontName("Impact")
+    static let roman: Attribute = .fontName("times new roman")
 }
 
 let editor: EditorLiteral = "\(.roman)He\(.fontEnd)\(.impact)l\(.fontEnd)lo, \(.red)literal\(.fontEnd)\(.impact)!\(.fontEnd)"
@@ -77,3 +77,19 @@ editor.product
 
 <img width="200" alt="result_1" src="https://user-images.githubusercontent.com/87851278/161392170-6075be93-dd76-46a8-aad4-85e7c6cd4060.png">
 
+### Attribute
+
+`Attribute` は文字装飾のデータです. こちらも Builder パターンで設計されており, 複数のフォント要素を同時に持つ Attribute を簡単に作成できます.
+
+```swift
+// Attribute is Builder. (Version 2 or higher)
+let blueHelvetica: Attribute = .foregroundColor(.blue).fontName("Helvetice")
+```
+
+Version 1 以前では辞書型で定義されています.
+
+
+```swift
+// Attribute is Dictionary. (Version 1 or earlier)
+let blueHelvetica: Attribute = [.fontColor: UIColor.blue, .fontName: "Helvetica"]
+```
